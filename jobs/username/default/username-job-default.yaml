@@ -54,7 +54,7 @@ spec:
               path: run-avida.sh
       containers:
       - name: avida
-        image: fortunalab/avida:2.15.alpine.default
+        image: fortunalab/avida:2.14.alpine.default
         resources:
           requests:
             memory: "200Mi"

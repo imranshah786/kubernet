@@ -1,0 +1,89 @@
+# define PersistentVolumeClaim
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: username-pv-claim
+  namespace: username-namespace
+spec:
+  storageClassName: username-nfs-csi
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+# define configMaps
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: avida-config
+  namespace: username-namespace
+data:
+  run-avida.sh: |-
+    #!/bin/sh
+    ./avida
+
+---
+
+# define Job
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: username-job-default
+  namespace: username-namespace
+spec:
+  completionMode: Indexed
+  parallelism: 2
+  completions: 4
+  template:
+    spec:
+      volumes:
+      - name: username-pv-storage
+        persistentVolumeClaim:
+          claimName: username-pv-claim
+      - name: avida-vol-config
+        configMap:
+          name: avida-config
+          items:
+            - key: run-avida.sh
+              path: run-avida.sh
+      containers:
+      - name: avida
+        image: fortunalab/avida:2.15.alpine.default
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "600m"
+          limits:
+            memory: "300Mi"
+            cpu: "800m"
+        command:
+        - sh
+        - -exec
+        - |
+          cp /avida-config/* /avida/
+          cd /avida
+          chmod +x run-avida.sh
+          ./run-avida.sh
+         
+        volumeMounts:
+        - mountPath: "/data"
+          name: username-pv-storage
+        - mountPath: "/avida-config"
+          name: avida-vol-config
+        env:
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      restartPolicy: Never
+  backoffLimit: 4

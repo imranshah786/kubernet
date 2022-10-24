@@ -49,7 +49,14 @@ sudo nano /var/snap/microk8s/current/args/kubelet
 ### restart the service:
 
 ```
-sudo service snap.microk8s.daemon-kubelet restart
+microk8s stop
+microk8s start
+```
+
+### check it:
+
+```
+kubectl get node sancho -ojsonpath='{.status.capacity.pods}{"\n"}'
 ```
 
 ---

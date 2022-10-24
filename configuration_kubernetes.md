@@ -54,6 +54,22 @@ sudo service snap.microk8s.daemon-kubelet restart
 
 ---
 
+## use only the master node to run jobs:
+
+```
+microk8s kubectl cordon dulcinea
+```
+
+> it will cordon the node (marking it with the NoSchedule taint, so that no new workloads are scheduled on it).
+
+```
+microk8s kubectl drain dulcinea
+```
+
+> it will cordon the node (marking it with the NoSchedule taint, so that no new workloads are scheduled on it), as well as evicting all running pods to other nodes.
+
+---
+
 ## remove an existing image from MicroK8s
 > in master and worker nodes:
 

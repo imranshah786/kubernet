@@ -1,5 +1,5 @@
 # Modifying a running job:
-## write down what selector and labels used by the job:
+## write down what selector and labels are used by the job:
 
 ``kubectl get job username-default-job -o yaml``
 

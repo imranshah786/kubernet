@@ -27,7 +27,7 @@ spec:
 
 ## delete the job but leave its pods running:
 
-``kubectl delete jobs/bastian-job --cascade=orphan``
+``kubectl delete jobs/username-default-job --cascade=orphan``
 
 ## create a new job and specify the same selector and labels:
 > add also the desired modifications (e.g., duplicate the number of pods running in parallel) in the *username-default-updated-job.yaml* file:

@@ -12,6 +12,7 @@ We provide here a step-by-step guide to set up and configure a computer cluster,
 ### [6. Service accounts for users.](/service_accounts.md)
 ### [7. Running jobs.](/running_jobs.md)
 ### [8. Monitoring jobs.](/monitoring.md)
-### [9. Install LENS as Kubernetes IDE.](/installation_lens.md)
+### [9. Modifying jobs.](/modifying_jobs.md)
+### [10. Install LENS as Kubernetes IDE.](/installation_lens.md)
 
 ---

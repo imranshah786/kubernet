@@ -60,4 +60,4 @@ spec:
 
 ## run the new job:
 
-``kubectl apply -f username-default-job.yaml``
+``kubectl apply -f username-default-updated-job.yaml``

@@ -38,7 +38,7 @@ microk8s join I.J.K.L:25000/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxx
 ===
 
 ### join the node as a worker:
-> from the master node:
+> from the worker node:
 
 ```
 microk8s join A.B.C.D:25000/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxx --worker

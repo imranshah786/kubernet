@@ -15,7 +15,7 @@ We create the *username-job-yaml* file containing the following terms:
 
 - a **job** named *username-job-default* will run 4 replicates of avida, running 2 in parallel (i.e., at the same time). The pods will use the persistent volumen claim defined as *avida-pv-claims*, to mount the folders */data* (to permanently store the results copied from the */avida/data* folder), and */avida-config* (to provide the customized script file *run-avida.sh* to the container before running it).
 
-We show here how to run 4 replicates of avida, running 2 in parallel. The image (fortunalab/avida:2.14.alpine.default) that will be used by the containers will be downloaded from [our repository in Docker Hub](https://hub.docker.com/r/fortunalab/avida). Each container will run within a single pod and will request at least 200M (max 300M) of RAM and 600 milliseconds (max 800 milliseconds of cpu time (1000 milliseconds is equivalent to 1 core/threat).
+We show here how to run 4 replicates of avida, running 2 in parallel. The image (fortunalab/avida:2.14.alpine.default) that will be used by the containers will be downloaded from [our repository in Docker Hub](https://hub.docker.com/r/fortunalab/avida). Each container will run within a single pod and will request at least 200M (max 300M) of RAM and 600 milliseconds (max 800 milliseconds of cpu time (1000 milliseconds is equivalent to 1 core/thread).
 
 ---
 

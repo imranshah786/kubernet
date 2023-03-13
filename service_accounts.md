@@ -53,7 +53,7 @@ kubectl krew install view-serviceaccount-kubeconfig
 ## create namespace, service account, roles, and bindings for a user:
 
 ### write the [username.yaml](https://gitlab.com/fortunalab/kubernetes/-/raw/master/accounts/username.yaml) file as follows:
-> do not forget to specify the server IP (i.e., replace xxx.xxx.xxx.xxx by the IP of the master node)
+> do not forget to specify the server IP (i.e., replace xxx.xxx.xxx.xxx by the IP of the NFS server)
 
 ```
 # define Namespace
@@ -74,7 +74,7 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: xxx.xxx.xxx.xxx
-  share: /kubernetes/nfs/username 
+  share: /data@kubernetes/nfs/username 
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:

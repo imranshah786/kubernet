@@ -34,19 +34,19 @@ sudo apt-get install nfs-kernel-server
 ### create a folder to mount the NFS volume:
 
 ```
-sudo mkdir -p /kubernetes/nfs
+sudo mkdir -p /data@kubernetes/nfs
 ```
 
 ### change owner and group:
 
 ```
-sudo chown nobody:nogroup /kubernetes/nfs
+sudo chown nobody:nogroup /data@kubernetes/nfs
 ```
 
 ### change permissions:
 
 ```
-sudo chmod 0777 /kubernetes/nfs
+sudo chmod 0777 /data@kubernetes/nfs
 ```
 
 ### allow master and worker nodes to access to the NSF volume:
@@ -56,8 +56,8 @@ sudo mv /etc/exports /etc/exports.bak
 ```
 
 ```
-echo -e '/kubernetes/nfs xxx.xxx.xxx.xxxx(rw,sync,no_subtree_check) | sudo tee /etc/exports # master
-echo -e '/kubernetes/nfs xxx.xxx.xxx.xxx(rw,sync,no_subtree_check) | sudo tee -a /etc/exports # worker
+echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxxx(rw,sync,no_subtree_check) | sudo tee /etc/exports # master
+echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxx(rw,sync,no_subtree_check) | sudo tee -a /etc/exports # worker
 ```
 
 ### restart the NFS server:

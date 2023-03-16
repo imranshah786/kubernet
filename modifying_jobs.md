@@ -61,3 +61,7 @@ spec:
 ## run the new job:
 
 ``kubectl apply -f username-default-updated-job.yaml``
+
+## force delete statefulset pods:
+
+``microk8s kubectl delete pod <pod-name> --grace-period=0 --force --namespace=<namespace-name>``

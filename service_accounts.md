@@ -175,6 +175,12 @@ clusterrolebinding.rbac.authorization.k8s.io/username-storageclasses-bind create
 ```
 ===
 
+## delete user account:
+
+```
+microk8s kubectl delete -f username.yaml
+```
+
 ## the following steps were done when a user is created in the master node:
 
 When using *kubectl* stand alone (i.e., as user instead of as admin), *kubectl* will get configuration from the user's *~/.kube/kubeconfig* file

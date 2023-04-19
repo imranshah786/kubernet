@@ -74,12 +74,12 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: xxx.xxx.xxx.xxx
-  share: /data@kubernetes/nfs/username 
+  share: xxx/username
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
   - hard
-  - nfsvers=4
+  - nfsvers=3
 
 ---
 
@@ -95,7 +95,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: username-role
-  namespace: username-namespace
+  namespace: bastian-namespace
 rules:
 - apiGroups: [""]
   resources: ["pods", "events", "persistentvolumes", "persistentvolumeclaims", "nodes", "proxy/nodes", "pods/log", "secrets", "services", "endpoints", "configmaps"]
@@ -157,9 +157,10 @@ subjects:
   namespace: username-namespace
 ```
 
-## apply manifiest by reading the user yaml file from our [gitlab repository](https://gitlab.com/fortunalab/kubernetes/-/tree/master/accounts):
+## apply manifiest by reading the user yaml file from local or from our [gitlab repository](https://gitlab.com/fortunalab/kubernetes/-/tree/master/accounts):
 
 ```
+microk8s kubectl apply -f username.yaml
 microk8s kubectl apply -f https://gitlab.com/fortunalab/kubernetes/-/raw/master/accounts/username.yaml
 ```
 
@@ -199,7 +200,9 @@ sed -i 's/127.0.0.1/xxx.xxx.xxx.xxx/g' ~/.kube/kubeconfig/username
 
 #### copy this file to the user home folder:
 
+```
 cp ~/.kube/kubeconfig/username /home/username/.kube/kubeconfig
+```
 
 #### export the kubeconfig variable:
 > it was already exported when the user was created

@@ -16,12 +16,12 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: xxx.xxx.xxx.xxx
-  share: /data@kubernetes/nfs/username
+  share: xxx/username
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
   - hard
-  - nfsvers=4
+  - nfsvers=3
 
 ---
 

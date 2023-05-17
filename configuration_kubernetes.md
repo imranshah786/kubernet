@@ -3,6 +3,7 @@
 ---
 
 ## change local path for microk8s container data:
+> both, in the master and worker nodes
 
 ### create path:
 ```

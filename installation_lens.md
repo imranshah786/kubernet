@@ -4,16 +4,28 @@
 
 ---
 
-## download LENS:
-> https://k8slens.dev
+## installation (from the Lens apt repo):
 
-## installation:
-
+### get the lens public security key and add it to your keyring:
 ```
-sudo dpkg -i Lens-6.0.2-latest.20220908.1.amd64.deb
+curl -fsSL https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/lens-archive-keyring.gpg > /dev/null
+```
+
+### add the lens repo to your /etc/apt/sources.list.d directory:
+```
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main" | sudo tee /etc/apt/sources.list.d/lens.list > /dev/null
+```
+
+### install or update Lens Desktop:
+```
+sudo apt update
+sudo apt install lens
 ```
 
 ## execute and activate LENS:
+```
+lens-desktop
+```
 
 you should create an user account at LENS website and follow activation instructions when running LENS for the first time.
 

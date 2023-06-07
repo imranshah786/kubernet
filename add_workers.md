@@ -44,6 +44,17 @@ microk8s join I.J.K.L:25000/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxx
 microk8s join A.B.C.D:25000/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/xxxxxxxxxxxx --worker
 ```
 
+## add NFS support:
+> on the worker nodes:
+
+### install package:
+sudo apt install nfs-common
+
+### check NFS volume can be mounted
+sudo mount -t nfs xxx.xxx.xxx.xxx:/foldername/username /mnt
+
+sudo umount /mnt
+
 ## list all nodes of the cluster by executing the following:
 > on the master node:
 

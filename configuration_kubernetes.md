@@ -39,19 +39,27 @@ microk8s start
 ### edit master and worker nodes by adding:
 
 ```
---max-pods=125
+--max-pods=140
 ```
-### to the following file::
+### to the following file:
 
 ```
 sudo nano /var/snap/microk8s/current/args/kubelet
 ```
 
 ### restart the service:
+#### master node:
 
 ```
 microk8s stop
 microk8s start
+```
+
+#### worker nodes:
+
+```
+sudo snap stop microk8s
+sudo snap start microk8s
 ```
 
 ### check it:

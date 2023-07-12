@@ -56,8 +56,8 @@ sudo mv /etc/exports /etc/exports.bak
 ```
 
 ```
-echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxxx(rw,sync,no_subtree_check) | sudo tee /etc/exports # master
-echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxx(rw,sync,no_subtree_check) | sudo tee -a /etc/exports # worker
+echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxxx(rw,sync,no_subtree_check') | sudo tee /etc/exports # master
+echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxx(rw,sync,no_subtree_check') | sudo tee -a /etc/exports # worker
 ```
 
 ### restart the NFS server:

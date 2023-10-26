@@ -109,4 +109,8 @@ nfs.csi.k8s.io   false            false            false             <unset>    
 ```
 ===
 
+## install nfs-common package in worker nodes:
+```
+sudo apt install nfs-common
+```
 ---

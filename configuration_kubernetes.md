@@ -86,6 +86,39 @@ microk8s kubectl drain workerNode
 
 ---
 
+## use specific nodes to run jobs:
+### add labels to nodes:
+#### tower nodes:
+
+```
+microk8s kubectl label nodes nodeName formfactor=tower
+microk8s kubectl label nodes nodeName formfactor=tower
+```
+#### rack 1U nodes:
+
+```
+microk8s kubectl label nodes nodeName formfactor=1u
+microk8s kubectl label nodes nodeName formfactor=1u
+microk8s kubectl label nodes nodeName formfactor=1u
+microk8s kubectl label nodes nodeName formfactor=1u
+microk8s kubectl label nodes nodeName formfactor=1u
+microk8s kubectl label nodes nodeName formfactor=1u
+```
+
+### show labels:
+```
+microk8s kubectl get nodes --show-labels
+```
+
+### configure the yaml file to use only 1u nodes:
+```
+spec:
+      nodeSelector:
+        formfactor: 1u
+```
+
+---
+
 ## remove an existing image from MicroK8s
 > in master and worker nodes:
 
@@ -106,5 +139,3 @@ microk8s ctr images remove docker.io/fortunalab/avida:2.15.alpine
 ```
 microk8s ctr images check | awk '{ print $1 }' | grep docker.io/fortunalab
 ```
-
----

@@ -1,7 +1,7 @@
 # Set up a persistent volume
 > master node
 
-We will deploy a job running avida that uses persistent volumes. Once avida finished, it will copy the output files from the local folder */data/* to a shared folder (i.e., an USB external disk). The shared folder is hosted by a NFS server, that will run on a remote machine. Kubernetes will set up a persistent volume that will be *alive* during the job execution. All data copied to the persistent volume will be kept on the shared folder as long as the job is not deleted.
+We will deploy a job running avida that uses persistent volumes. Once avida finished, it will copy the output files from the local folder */data/* to a shared folder. The shared folder is hosted by a NFS server, that will run on one of the workers. Kubernetes will set up a persistent volume that will be *alive* during the job execution. All data copied to the persistent volume will be kept on the shared folder as long as the job is not deleted.
 
 ---
 
@@ -34,19 +34,25 @@ sudo apt-get install nfs-kernel-server
 ### create a folder to mount the NFS volume:
 
 ```
-sudo mkdir -p /data@kubernetes/nfs
+sudo mkdir -p /nfs
+```
+
+### mount the NFS volume:
+
+```
+sudo mount /dev/sdx /nfs
 ```
 
 ### change owner and group:
 
 ```
-sudo chown nobody:nogroup /data@kubernetes/nfs
+sudo chown nobody:nogroup /nfs
 ```
 
 ### change permissions:
 
 ```
-sudo chmod 0777 /data@kubernetes/nfs
+sudo chmod 0777 /nfs
 ```
 
 ### allow master and worker nodes to access to the NSF volume:
@@ -56,8 +62,8 @@ sudo mv /etc/exports /etc/exports.bak
 ```
 
 ```
-echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxxx(rw,sync,no_subtree_check)' | sudo tee /etc/exports # master
-echo -e '/data@kubernetes/nfs xxx.xxx.xxx.xxx(rw,sync,no_subtree_check)' | sudo tee -a /etc/exports # worker
+echo -e '/nfs xxx.xxx.xxx.xxxx(rw,sync,no_subtree_check)' | sudo tee /etc/exports # master
+echo -e '/nfs xxx.xxx.xxx.xxx(rw,sync,no_subtree_check)' | sudo tee -a /etc/exports # worker
 ```
 
 ### restart the NFS server:

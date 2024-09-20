@@ -64,4 +64,30 @@ su - username
 groups
 ```
 
+## create a tar file of a docker image for sharing:
+
+### compress image and export:
+
+```
+docker save imagename:latest | gzip > imagename.tar.gz
+```
+
+### copy file to remote machine:
+
+```
+scp imagename.tar.gz username@machine:/home/username/
+```
+
+### decompress file in remote machine:
+
+```
+gunzip imagename.tar.gz
+```
+
+### load docker image:
+
+```
+docker load -i imagename.tar
+```
+
 ---

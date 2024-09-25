@@ -17,9 +17,11 @@
 
 ``sudo chown -R nogroup:nogroup /nfs/bcb/username``
 
-### create the namespace *username* as:
+### create the namespace *username* and apply resource quota:
 
-``microk8s kubectl create namespace username-namespace``
+``microk8s kubctl apply -f username-namespace.yaml``
+
+> **What does this do?** the user will be allowed to run jobs in kubernetes, a default *YAML* file will be read and the resouce limitation specified will be applied to that user.
 
 ### execute helm as:
 

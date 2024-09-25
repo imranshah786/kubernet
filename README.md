@@ -4,15 +4,16 @@ We provide here a step-by-step guide to set up and configure a computer cluster,
 
 ---
 
-### [1. Install Docker.](/installation_docker.md)
-### [2. Install Kubernetes (MicroK8s).](/installation_kubernetes.md)
-### [3. Configuration options.](/configuration_kubernetes.md)
-### [4. Set up persistent volumes.](/persistent_volumes.md)
-### [5. Add additional nodes (workers).](/add_workers.md)
-### [6. Service accounts for users.](/service_accounts.md)
-### [7. Running jobs.](/running_jobs.md)
-### [8. Monitoring jobs.](/monitoring.md)
-### [9. Modifying jobs.](/modifying_jobs.md)
-### [10. Install LENS as Kubernetes IDE.](/installation_lens.md)
+### [Install Docker.](/installation_docker.md)
+### [Install Kubernetes (MicroK8s).](/installation_kubernetes.md)
+### [Configuration options.](/configuration_kubernetes.md)
+### [Set up persistent volumes.](/persistent_volumes.md)
+### [Add additional nodes (workers).](/add_workers.md)
+### [Service accounts for users.](/service_accounts.md)
+### [Accessing the cluster.](/access_users.md)
+### [Running jobs.](/running_jobs.md)
+### [Monitoring jobs.](/monitoring.md)
+### [Modifying jobs.](/modifying_jobs.md)
+### [Install LENS as Kubernetes IDE.](/installation_lens.md)
 
 ---

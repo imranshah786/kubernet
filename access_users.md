@@ -9,7 +9,7 @@
 - the user should be familiar with *kubectl* commands to interact with the cluster.
 
 ## requirements for the admin:
-> from the master node
+> from the master node: **we will run everything at once by executing a bash script**.
 
 ### create a NFS path in the storage node for the user *username*. 
 
@@ -23,7 +23,7 @@
 
 > **What does this do?** the user will be allowed to run jobs in kubernetes, a default *YAML* file will be read and the resouce limitation specified will be applied to that user.
 
-### execute helm as:
+### create a pod to serve as an entry point for the user:
 
 ``microk8s helm3 install generic-workflow . --namespace username-namespace --set serviceAccount.name=username --set nfs.server=10.0.0.xxx --set nfs.path=/nfs/username --set sftp.password=xxxxx --set jobs.node=nodename``
 
@@ -31,7 +31,7 @@
 
 > **What's next?** The user will receive a *URL* to connect via *SFTP* and *SSH* to interact with the cluster. Once the job is finished, the user must delete the job.
 
-### get url for access:
+### get the URL for user access:
 
 ``export NODE_PORT=$(microk8s kubectl get --namespace username-namespace -o jsonpath="{.spec.ports[0].nodePort}" services username-workflow-agvc)``
 
@@ -58,8 +58,10 @@ sed -i 's/127.0.0.1/xxx.xxx.xxx.xxx/g' ~/.kube/kubeconfig/username
 ~/.kube/kubeconfig/username
 ``
 
-### uninstall chart helm:
+### once the user no longer needs to run jobs ...
+
+#### uninstall chart helm:
 ``microk8s helm3 delete username-generic-workflow-8djre --namespace username-namespace``
 
-### delete namespace:
+#### delete namespace:
 ``microk8s kubectl delete namespace username-namespace``    

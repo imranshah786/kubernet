@@ -15,7 +15,7 @@
 
 ``sudo mkdir /nfs/bcb/username``
 
-``sudo chown -R nogroup:nogroup /nfs/bcb/username``
+``sudo chown -R nobody:nogroup /nfs/bcb/username``
 
 ### create the namespace *username* and apply resource quota:
 

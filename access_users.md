@@ -1,10 +1,11 @@
-# How to access the cluster:
+# How to access the cluster.
+> you should replace *username* accordingly.
 ---
 
 ## requirements for the user:
 - a VPN connection is required if the user is outside the local network.
 - *kubectl* must be installed in the local computer of the user (https://kubernetes.io/docs/tasks/tools/#kubectl).
-- the user must copy the kube config file we provide to the local folder of the user's computer (e.g., for GNU/Linux users: *~/.kube/config*)
+- the user must copy the kube config file we provide to the local folder of the user's computer (e.g., for GNU/Linux users: *~/.kube/username*)
 - the user should be familiar with *kubectl* commands to interact with the cluster.
 
 ## requirements for the admin:

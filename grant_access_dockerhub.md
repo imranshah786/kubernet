@@ -10,7 +10,7 @@ To grant our lab account **ebdbcb** access to your private repository on DockerH
 
 - create a *Team*:
     - in your organization's settings, go to the *Teams* tab.
-    - click *Create Team* and give it the name *ebdbcb*.
+    - click *Create Team* and give it a name.
 
 
 - add the *ebdbcb* user to the *Team*:
@@ -23,4 +23,4 @@ To grant our lab account **ebdbcb** access to your private repository on DockerH
     - go to your private repository. In the repository settings, assign the repository to the team.
     - choose the level of access the team should have (read).
 
-Now, the our lab account *ebdbcb* can access your private repository and kubernetes will be able to pull the docker images you want to use in your workflow.
+Now, our lab account *ebdbcb* can access your private repository and kubernetes will be able to pull the docker images you want to use in your workflow.

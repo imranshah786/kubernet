@@ -5,6 +5,7 @@ We provide here a step-by-step guide to set up and configure a computer cluster,
 ---
 
 ### [Install Docker.](/installation_docker.md)
+### [Grant access to DockerHub.](/grant_access_dockerhub.md)
 ### [Install Kubernetes (MicroK8s).](/installation_kubernetes.md)
 ### [Configuration options.](/configuration_kubernetes.md)
 ### [Set up persistent volumes.](/persistent_volumes.md)

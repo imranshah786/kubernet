@@ -1,4 +1,5 @@
 # Grant our lab access to your private repository on DockerHub.
+> if your docker image is stored in a public repository on DockerHub, you do not need to do anything.
 
 To grant our lab account **ebdbcb** access to your private repository on DockerHub so that we can pull your docker images, you need to follow these steps:
 

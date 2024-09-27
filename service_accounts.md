@@ -95,7 +95,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: username-role
-  namespace: bastian-namespace
+  namespace: username-namespace
 rules:
 - apiGroups: [""]
   resources: ["pods", "events", "persistentvolumes", "persistentvolumeclaims", "nodes", "proxy/nodes", "pods/log", "secrets", "services", "endpoints", "configmaps"]

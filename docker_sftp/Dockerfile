@@ -28,4 +28,4 @@ COPY generate-kube-config.sh /usr/local/bin/
 
 EXPOSE 22
 
-ENTRYPOINT ["/entrypoint"]
+ENTRYPOINT ["/entrypoint.sh"]

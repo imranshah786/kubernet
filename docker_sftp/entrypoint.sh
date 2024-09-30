@@ -57,9 +57,8 @@ if [ ! -f "$userConfFinalPath" ]; then
     if [ -f "$userConfFinalPath" ] && [ "$(wc -l < "$userConfFinalPath")" -gt 0 ]; then
         # Import users from final conf file
         while IFS= read -r user || [[ -n "$user" ]]; do
-            create-sftp-user "$user"
-            generate-kube-config "$user"
-            #clone-repo "$user"
+            create-sftp-user.sh "$user"
+            generate-kube-config.sh "$user"
         done < "$userConfFinalPath"
     elif $startSshd; then
         log "FATAL: No users provided!"

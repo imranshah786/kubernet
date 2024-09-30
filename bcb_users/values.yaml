@@ -1,0 +1,101 @@
+# default values for userpod.
+# this is a YAML-formatted file.
+# declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ebdbcb/sftp
+  pullPolicy: Always
+  # overrides the image tag whose default is the chart appVersion:
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # specifies whether a service account should be created:
+  create: true
+  # automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # annotations to add to the service account:
+  annotations: {}
+  # the name of the service account to use.
+  # if not set and create is true, a name is generated using the fullname template:
+  name: "bcb"
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  name: sftp
+  type: NodePort
+  port: 22
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+  - host: chart-example.local
+    paths:
+    - path: /
+      pathType: ImplementationSpecific
+  tls: []
+
+resources:
+  requests:
+    cpu: "1"
+    memory: "200Mi"
+  limits:
+    cpu: "2"
+    memory: "400Mi"
+
+resourceQuota:
+  limits:
+    cpu: "100"
+    memory: "8Gi"
+  requests:
+    cpu: "150"
+    memory: "16Gi"
+  pods: "10"
+
+livenessProbe:
+  exec:
+    command:
+    - sh
+    - -c
+    - nc -z localhost 22
+readinessProbe:
+  exec:
+    command:
+    - sh
+    - -c
+    - nc -z localhost 22
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nfs:
+  server: 127.0.0.1
+  path: /path
+
+sftp:
+  password: 123
+
+jobs:
+  node:
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

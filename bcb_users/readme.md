@@ -1,6 +1,6 @@
 # Helm Chart for users.
 
-The **Helm chart** *username-gateway* that will be installed deploys a pod, serving as an entry point to our Kubernetes-managed cluster. It will equip users with everything needed to efficiently run their jobs. Users can upload and retrieve data via the *SFTP* protocol and launch jobs on the cluster directly from their terminal.
+The **Helm chart** *username-gateway* that will be installed deploys a pod, serving as an entry point to our Kubernetes-managed cluster. It will equip users with everything needed to efficiently run their jobs. Users can upload and retrieve data via the *SFTP* protocol and launch jobs on the cluster directly from their terminal. The chart also creates the necessary service account and its associated secret, and deploys the pod using this service account, ensuring proper authentication and access control within the cluster.
 
 ### create a pod to serve as an entry point for the user:
 

@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "userpod.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "userpod.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "userpod.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "userpod.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "userpod.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          #command: ["/bin/bash", "-c", "/usr/local/bin/scripts.sh"]
+          ports:
+            - name: {{ .Values.service.name }}
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: service-account-secret
+              mountPath: "/etc/service-account-secret"
+              readOnly: true
+            - name: nfs-volume
+              mountPath: "/home/{{ include "userpod.serviceAccountName" . }}/workflows"
+          env:
+            - name: SFTP_USERS
+              value: "{{ include "userpod.serviceAccountName" . }}:{{ .Values.sftp.password}}:1001:100"
+            - name: SERVICE_ACCOUNT_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: "spec.serviceAccountName"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: "metadata.namespace"
+            - name: USER_NAME_DEFAULT
+              value: "{{ include "userpod.serviceAccountName" . }}"
+            - name: NFS_SERVER_DEFAULT
+              value: "{{ .Values.nfs.server }}"
+            - name: NFS_PATH_DEFAULT
+              value: "{{ .Values.nfs.path }}/"
+            - name: NODE_DEFAULT
+              value: "{{ .Values.jobs.node }}"
+      volumes:
+      - name: service-account-secret
+        secret:
+          secretName: "{{ include "userpod.serviceAccountName" . }}-secret"
+      - name: nfs-volume
+        nfs:
+          server: {{ .Values.nfs.server }}
+          path: {{ .Values.nfs.path }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+      {{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- else if .Values.jobs.node }}
+      nodeSelector:
+        kubernetes.io/hostname: {{ .Values.jobs.node }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

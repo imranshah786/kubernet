@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "userpod.fullname" . }}
+  labels:
+    {{- include "userpod.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 22
+      protocol: TCP
+      name: sftp
+  selector:
+    {{- include "userpod.selectorLabels" . | nindent 4 }}

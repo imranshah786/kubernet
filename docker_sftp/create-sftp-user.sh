@@ -69,6 +69,7 @@ useradd "${useraddOptions[@]}" "$user"
 mkdir -p "/home/$user"
 chown root:root "/home/$user"
 chmod 755 "/home/$user"
+usermod --shell "/usr/bin/bash" "$user"
 
 # Retrieving user id to use it in chown commands instead of the user name
 # to avoid problems on alpine when the user name contains a '.'

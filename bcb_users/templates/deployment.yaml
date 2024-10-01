@@ -53,7 +53,7 @@ spec:
               mountPath: "/etc/service-account-secret"
               readOnly: true
             - name: nfs-volume
-              mountPath: "/home/{{ include "userpod.serviceAccountName" . }}/workflows"
+              mountPath: "/home/{{ include "userpod.serviceAccountName" . }}/bcb"
           env:
             - name: SFTP_USERS
               value: "{{ include "userpod.serviceAccountName" . }}:{{ .Values.sftp.password}}:1001:100"

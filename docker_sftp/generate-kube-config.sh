@@ -26,6 +26,7 @@ fi
 USER_HOME=$(getent passwd $user | cut -d: -f6)
 
 # Create the ~/.kube/config file
+mkdir -p $USER_HOME/.kube
 cat <<EOF > "$USER_HOME/.kube/config"
 apiVersion: v1
 kind: Config
@@ -48,4 +49,3 @@ users:
 EOF
 
 echo "Generated $USER_HOME/.kube/config file successfully for user $SERVICE_ACCOUNT_NAME."
-

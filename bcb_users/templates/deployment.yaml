@@ -84,9 +84,6 @@ spec:
       {{- if .Values.nodeSelector }}
       nodeSelector:
       {{ toYaml .Values.nodeSelector | indent 8 }}
-      {{- else if .Values.jobs.node }}
-      nodeSelector:
-        kubernetes.io/hostname: {{ .Values.jobs.node }}
       {{- end }}
       {{- with .Values.affinity }}
       affinity:

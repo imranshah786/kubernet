@@ -99,3 +99,18 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+rstudio:
+  enabled: false 
+  resources:
+    requests:
+      cpu: "1"
+      memory: "4Gi"
+    limits:
+      cpu: "2"
+      memory: "6Gi"
+  nodeSelector: {}
+  node: dulcinea
+  service:
+    type: NodePort
+    port: 8787

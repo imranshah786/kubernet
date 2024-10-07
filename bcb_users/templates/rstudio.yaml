@@ -1,0 +1,46 @@
+{{- if .Values.rstudio.enabled }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Values.serviceAccount.name }}-rstudio
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.serviceAccount.name }}-rstudio
+spec:
+  containers:
+  - name: r
+    image: rocker/tidyverse
+    resources:
+      {{- toYaml .Values.rstudio.resources | nindent 6 }}
+    command:
+    env:
+    - name: PASSWORD
+      value: "{{ .Values.rstudio.password | default .Values.sftp.password }}"
+  nodeSelector:
+    formfactor: "1u"
+  
+  {{- if .Values.nodeSelector }}
+  nodeSelector:
+    {{ toYaml .Values.rstudio.nodeSelector | indent 4 }}
+  {{- else if .Values.rstudio.node }}
+  nodeSelector:
+    kubernetes.io/hostname: {{ .Values.rstudio.node }}
+  {{- end }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.serviceAccount.name }}-rstudio-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: {{ .Values.rstudio.service.type }}
+  ports:
+  - protocol: TCP
+    port: {{ .Values.rstudio.service.port }}
+    targetPort: 8787
+    name: http
+  selector:
+    app.kubernetes.io/name: {{ .Values.serviceAccount.name }}-rstudio   # Selector que coincide con la etiqueta del Pod
+{{- end }}

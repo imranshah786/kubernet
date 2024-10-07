@@ -42,5 +42,5 @@ spec:
     targetPort: 8787
     name: http
   selector:
-    app.kubernetes.io/name: {{ .Values.serviceAccount.name }}-rstudio   # Selector que coincide con la etiqueta del Pod
+    app.kubernetes.io/name: {{ .Values.serviceAccount.name }}-rstudio   # selector name as the pod label
 {{- end }}

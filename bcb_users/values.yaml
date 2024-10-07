@@ -89,7 +89,7 @@ nfs:
   path: /path
 
 sftp:
-  password: 123
+  password: xxxxx
 
 jobs:
   node:
@@ -110,7 +110,7 @@ rstudio:
       cpu: "2"
       memory: "6Gi"
   nodeSelector: {}
-  node: dulcinea
+  node: xxxxx
   service:
     type: NodePort
     port: 8787

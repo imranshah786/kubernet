@@ -9,16 +9,24 @@ metadata:
 spec:
   containers:
   - name: r
-    image: rocker/tidyverse
+    image: {{ .Values.rstudio.image }}
     resources:
       {{- toYaml .Values.rstudio.resources | nindent 6 }}
     command:
     env:
     - name: PASSWORD
       value: "{{ .Values.rstudio.password | default .Values.sftp.password }}"
+    volumeMounts:
+      - name: nfs-volume
+        mountPath: "/home/rstudio/bcb"
+  volumes:
+  - name: nfs-volume
+    nfs:
+      server: {{ .Values.nfs.server }}
+      path: {{ .Values.nfs.path }}
   nodeSelector:
     formfactor: "1u"
-  
+
   {{- if .Values.nodeSelector }}
   nodeSelector:
     {{ toYaml .Values.rstudio.nodeSelector | indent 4 }}

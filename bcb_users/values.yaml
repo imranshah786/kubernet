@@ -101,7 +101,8 @@ tolerations: []
 affinity: {}
 
 rstudio:
-  enabled: false 
+  enabled: false
+  image: ebd-bcb/rocker-tidyverse-4.4.1-julia-1.10.5 
   resources:
     requests:
       cpu: "1"
@@ -110,7 +111,6 @@ rstudio:
       cpu: "2"
       memory: "6Gi"
   nodeSelector: {}
-  node: xxxxx
   service:
     type: NodePort
     port: 8787

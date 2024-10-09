@@ -4,6 +4,17 @@
 
 ## as admin:
 
+### list available resources:
+
+```
+microk8s kubectl get nodes -o custom-columns=NAME:.metadata.name,CPU:.status.allocatable.cpu,MEMORY:.status.allocatable.memory
+```
+
+### list used resources:
+```
+microk8s kubectl top nodes
+```
+
 ### list user accounts:
 
 ``` 

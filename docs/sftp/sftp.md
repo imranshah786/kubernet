@@ -5,7 +5,7 @@ In this tutorial, you'll learn how to connect to an SFTP server using three meth
 - [Using Nautilus (Ubuntu)](#1-using-nautilus-ubuntu-2204)
 - [Using the Command Line (Linux / Unix)](#2-using-the-command-line)
 - [Using FileZilla (Linux / Mac OS / Windows)](#3-using-filezilla)
-- [Using PowerShell (Windows 10 / 11)]()
+- [Using PowerShell (Windows 10 / 11)](#4-using-windows-1011-powershell)
 
 Each section includes step-by-step instructions for connecting, transferring files, and navigating the server.
 

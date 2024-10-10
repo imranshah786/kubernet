@@ -2,9 +2,10 @@
 
 In this tutorial, you'll learn how to connect to an SFTP server using three methods: the file explorer (Nautilus) in Ubuntu 22.04, the Linux/Unix command line, and FileZilla. Each approach allows you to securely transfer files between your local machine and the SFTP server. Click on the method you'd like to learn more about:
 
-- [Using Nautilus (Ubuntu 22.04)](#1-using-nautilus-ubuntu-2204)
-- [Using the Command Line](#2-using-the-command-line)
-- [Using FileZilla](#3-using-filezilla)
+- [Using Nautilus (Ubuntu)](#1-using-nautilus-ubuntu-2204)
+- [Using the Command Line (Linux / Unix)](#2-using-the-command-line)
+- [Using FileZilla (Linux / Mac OS / Windows)](#3-using-filezilla)
+- [Using PowerShell (Windows 10 / 11)]()
 
 Each section includes step-by-step instructions for connecting, transferring files, and navigating the server.
 
@@ -280,6 +281,102 @@ When you're finished transferring files, click the **Disconnect** button at the 
 ### Conclusion
 
 You have now learned how to connect to your SFTP server using FileZilla, transfer files between your local machine and the server, and navigate both file systems.
+
+# 4. Using Windows 10/11 (PowerShell)
+
+If you're using Windows 10 or 11, you can easily connect to an SFTP server using the built-in PowerShell. This method does not require any additional software and is a simple way to access and manage files on an SFTP server from Windows.
+
+### Step-by-Step Instructions
+
+#### Step 1: Open PowerShell
+
+1. Press `Win + X` and select **Windows PowerShell** or search for "PowerShell" in the start menu.
+   
+2. Once PowerShell is open, you'll see a command prompt window where you can enter commands.
+
+#### Step 2: Connect to the SFTP Server
+
+To connect to your SFTP server, use the following syntax:
+
+```bash
+sftp username@hostname
+```
+
+For our example:
+
+```bash
+sftp emma@192.168.0.24 -P 32117
+```
+
+This connects you to the server using the specified username and port. After pressing Enter, you will be prompted for your password.
+
+```bash
+emma@192.168.0.24's password:
+```
+
+Enter the password for your account to connect.
+
+#### Step 3: Navigate the SFTP Server
+
+Once logged in, you can navigate the server using basic SFTP commands such as:
+
+- **List files and directories:**
+
+  ```bash
+  ls
+  ```
+
+- **Change directory on the server:**
+
+  ```bash
+  cd <directory_name>
+  ```
+
+- **Print the current directory:**
+
+  ```bash
+  pwd
+  ```
+
+#### Step 4: Uploading and Downloading Files
+
+To **upload** a file from your local computer to the SFTP server, use the following command:
+
+```bash
+put <local_file_path>
+```
+
+For example:
+
+```bash
+put C:\Users\Emma\Documents\my-file.txt
+```
+
+To **download** a file from the server to your local machine:
+
+```bash
+get <remote_file_name>
+```
+
+For example:
+
+```bash
+get my-server-file.txt
+```
+
+#### Step 5: Disconnecting
+
+To disconnect from the SFTP server, type:
+
+```bash
+exit
+```
+
+This will close your SFTP session and return you to the regular PowerShell prompt.
+
+### Conclusion
+
+You have now learned how to connect to an SFTP server from Windows 10/11 using PowerShell. This method provides a quick and easy way to manage files on your server without needing to install additional software.
 
 ### Summary
 

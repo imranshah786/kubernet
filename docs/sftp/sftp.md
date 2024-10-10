@@ -382,9 +382,15 @@ You have now learned how to connect to an SFTP server from Windows 10/11 using P
 
 ### Summary
 
-You have now learned how to connect to your SFTP server using FileZilla, transfer files between your local machine and the server, and navigate both file systems.
+In this tutorial, you've learned how to connect to an SFTP server using four different methods:
+
+- **Using Nautilus (Ubuntu 22.04)**: A graphical file explorer for easy SFTP access.
+- **Using the Command Line**: A powerful terminal method for connecting and managing files on the server.
+- **Using FileZilla**: A popular graphical SFTP client that simplifies file transfers.
+- **Using Windows PowerShell**: A built-in option for Windows 10 and 11 users to connect to SFTP servers without additional software.
+
+Each method provides a secure way to transfer files between your local machine and the SFTP server.
 
 ## Conclusion
 
-You have successfully connected to your SFTP server using the file explorer on Ubuntu 22.04, the command line, and FileZilla. Now you can securely manage your files on the server, whether you prefer a graphical interface or the efficiency of the terminal. With these methods, you're equipped to handle file transfers in various environments.
-
+You have successfully connected to your SFTP server using various methods tailored to different preferences and operating systems. Whether you prefer a graphical interface like FileZilla and Nautilus, the efficiency of the command line, or the convenience of Windows PowerShell, you now have the tools to manage your files securely on the server. With this knowledge, you can handle file transfers and navigate your server environment confidently, ensuring that your data is safe and accessible.

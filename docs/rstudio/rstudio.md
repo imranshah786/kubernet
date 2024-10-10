@@ -65,4 +65,6 @@ Make sure to use the `bcb` folder for the persistence of files. This is crucial 
 
 	![Sign out](rstudio_signout.png)
 
-Congratulations! You have successfully connected to an RStudio Server from your web browser, uploaded and downloaded files, and ensured your work is saved properly.
+## Conclusion
+
+In this tutorial you have successfully connected to an RStudio Server from your web browser, uploaded and downloaded files, and ensured your work is saved properly.

@@ -325,11 +325,13 @@ Once logged in, you can navigate the server using basic SFTP commands such as:
   ```bash
   ls
   ```
+  
+    **Note:** This command will display the contents of the current directory on the SFTP server. In the context of the cluster, you should see a folder named bcb. This folder corresponds to the persistent storage space available on the cluster. If you want to ensure that your data is not lost when the pods are terminated, you must upload your files to the bcb directory.
 
 - **Change directory on the server:**
 
   ```bash
-  cd <directory_name>
+  cd bcb
   ```
 
 - **Print the current directory:**

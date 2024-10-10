@@ -53,8 +53,6 @@ In this tutorial, we will guide you on how to connect to an RStudio Server using
 
 	![Download Files](rstudio_download.png)
 
-**Note:** You can also upload files using SFTP by following the tutorial located at `/path/sftp.md`.
-
 ## Step 6: Important Note on File Persistence
 Make sure to use the `bcb` folder for the persistence of files. This is crucial to ensure that your work is saved across sessions.
 
